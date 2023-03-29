@@ -49,20 +49,13 @@ airflow
 ![N|Solid](https://github.com/matosmatheus7/DataEngineering-Challenge/blob/main/assets/dag_snapshot.PNG?raw=true)
 
 ### Extraction
-   | Tasks| 
-   | ------------ | 
-   | download| 
-   | ingest| 
     
 The DAG (Directed Acyclic Graph) is designed to run once a month. The extraction process involves **downloading** the latest file from the official ANP website, which we then save to the staging folder. We use the **openpyxl** library to extract the pivot cache from the download .xlsx file, storing the results in two separate .xlsx tables also located in the staging folder.
 
 It's worth noting that the download process will only occur if the file doesn't already exist in the staging folder or if the existing file is older than 30 days (1 month). This ensures that we're always working with the most up-to-date data. In the event that an old .xlsx file exists, it will be replaced with the new file.
 
 ### Transformation 
-   | Tasks| 
-   | ------------ | 
-   | unpivot| 
-   | validate| 
+   
 My primary task in the ETL process is to perform a series of transformations on the data to meet the specific requirements of the challenge. The first step is to **unpivot the months columns**, which involves converting the data from a wide format to a long format. This makes it easier to analyze and manipulate the data.
 In addition to the unpivot operation, there may be other minor operations required to adapt the data to meet the challenge requirements. For example, I may need to perform data type conversions, remove or rename columns, or handle missing or null values.
 
@@ -70,10 +63,6 @@ During these transformation steps, I also create a **validation task**, to ensur
 By performing these transformations and validations, we can ensure that the data is in the correct format and meets the requirements of the challenge.
 
 ### Load
-   | Tasks| 
-   | ------------ | 
-   | load| 
-   | report| 
 The final step in the ETL process is to load the transformed data into a Postgres table. This involves inserting both .xlsx files that were generated during the transformation process into the **anp_sales** table in **Postgres**.
 
 The **report task**, has the objective to inform that the pipeline has been complete. It will improve communication and keep the pipeline owner informed about the pipeline's progress.
