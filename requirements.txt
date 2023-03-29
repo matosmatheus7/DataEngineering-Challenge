@@ -1,0 +1,4 @@
+pandas==1.4.4
+pyspark==3.2.1
+openpyxl
+pyarrow<10.1.0,>=10.0.1
