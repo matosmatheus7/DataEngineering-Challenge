@@ -33,9 +33,10 @@ airflow
 ├── staging
 │   ├── vendas_diesel_m3.xlxs
 │   └── vendas_dfuels_m3.xlxs
+│   └── vendas-combustiveis-m3.xlsx
 ├── assests
-│   ├── image1
-│   └── image2
+│   ├── image1.png
+│   └── image2.png
 ├── requirements.txt
 ├── Dockerfile
 ├── docker-compose.yml
