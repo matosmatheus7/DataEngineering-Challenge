@@ -92,11 +92,12 @@ By completing this step, the data is available for further analysis, in a format
 
 - https://stackoverflow.com/questions/37354105/find-the-end-of-the-month-of-a-pandas-dataframe-series
 
-- https://www.geeksforgeeks.org/how-to-insert-a-pandas-dataframe-to-an-existing-postgresql-table/
+- https://www.statology.org/pandas-unpivot/#:~:text=In%20pandas%2C%20you%20can%20use,col3'%2C%20...%5D
+
+- https://ask.libreoffice.org/t/convert-to-command-line-parameter/840
 
 - https://www.w3schools.com/python/ref_keyword_assert.asp
 
-- https://www.w3schools.com/python/python_try_except.asp
 # :crossed_swords: Thanks for the Opportunity !
 
 
