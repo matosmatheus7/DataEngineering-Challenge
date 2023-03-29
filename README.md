@@ -86,8 +86,6 @@ By completing this step, the data is available for further analysis, in a format
 ## :notebook:Useful links
 - https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html
 
-- https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html
-
 - https://pandas.pydata.org/docs/reference/api/pandas.melt.html
 
 - https://stackoverflow.com/questions/37354105/find-the-end-of-the-month-of-a-pandas-dataframe-series
