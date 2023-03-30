@@ -182,9 +182,13 @@ def create__table_and_insert_data(df_dfuels_sales, df_diesel_sales):
     except Exception as e:
         print("Error inserting data: ", e)
 
+    #this way, dag can run every month without have 
+    anp_diesel_dfuels_sales = df_dfuels_sales.append(df_diesel_sales, ignore_index=True)
+
     try:
-        df_dfuels_sales.to_sql('anp_sales', con=engine, if_exists='append', index=False)
-        df_diesel_sales.to_sql('anp_sales', con=engine, if_exists='append', index=False)
+        anp_diesel_dfuels_sales.to_sql('anp_sales', con=engine, if_exists='replace', index=False)
+        # df_dfuels_sales.to_sql('anp_sales', con=engine, if_exists='append', index=False)
+        # df_diesel_sales.to_sql('anp_sales', con=engine, if_exists='append', index=False)
     except Exception as e:
         print(f"An error occurred while inserting dataframes into the database: {e}")
 

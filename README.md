@@ -55,7 +55,8 @@ This DAG will run every month on the first day of the month. The extraction proc
 ### Transformation 
 My primary task in the ETL process is to perform a series of transformations on the data to meet the specific requirements of the challenge. The first step is to **unpivot the months columns**, which involves converting the data from a wide format to a long format. This makes it easier to analyze and manipulate the data.
 In addition to the unpivot operation, there may be other minor operations required to adapt the data to meet the challenge requirements. For example, I may need to perform data type conversions, remove or rename columns, or handle missing or null values.
-During these transformation steps, I also create a **validation task**, to ensure data consistency by checking the total value from the pivote tables that were extracted with the values from the transformed data frames.
+
+During these transformation steps, I also create a **validation task**, to ensure data consistency by checking the total value from the pivote tables that were extracted with the values from the transformed data frames. If data is not valid the data is not loaded.
 By performing these transformations and validations, we can ensure that the data is in the correct format and meets the requirements of the challenge.
 
 ### Load
@@ -65,11 +66,11 @@ By completing this step, the data is available for further analysis, in a format
 ![N|Solid](https://github.com/matosmatheus7/DataEngineering-Challenge/blob/main/assets/postgree_snapshot.PNG?raw=true)
 
 ## :point_up: Improvement Points
-- Consider using PySpark to process data, as it is optimized for large-scale data processing and can reduce the time cost compared to traditional Python data processing methods.
-~~- Check if the file exists and its modification date. If the file already exists and it was downloaded less than one month ago, skip downloading a new file. This can reduce unnecessary file downloads and improve performance.~~ :heavy_check_mark:
+- Consider using PySpark to process data, I decided to go with pandas because dataset is small, making Pandas and beter solution than Pyspark, also PySpark environments are more complex to set up, but pyspark is optimized for large-scale data processing and can reduce the time cost compared to traditional Python data processing methods.
+~~- Check if the file exists and its modification date. If the file already exists and it was downloaded less than one month ago, skip downloading a new file. This can reduce unnecessary file downloads and improve performance.~~ :heavy_check_mark: Completed
 -   Instead of just printing a message using `printf`, send an email with the status of the pipeline to the pipeline owner for the reporting task. This will improve communication and keep the pipeline owner informed about the pipeline's progress.
 -   Explore with the stakeholdes the option to replace null values with the mean of the corresponding month/year/uf. This approach will help fill in missing data and make the data analysis more accurate.
-- Since I choose to insert both dataframes on 1 table, I needed t use the **if_exists='append'** attribute when inserting on the database. Now, if I don't want to change my database, I should look for an option to check for duplicate rows based on year-month and remove it.
+- ~~Since I choose to insert both dataframes on 1 table, I needed t use the if_exists='append' attribute when inserting on the database. Now, if I don't want to change my database, I should look for an option to check for duplicate rows based on year-month and remove it.~~ :heavy_check_mark:Completed
 ## :hammer_and_wrench: Setup
 
 ### Clone project
