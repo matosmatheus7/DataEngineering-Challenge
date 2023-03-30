@@ -73,11 +73,8 @@ By completing this step, the data is available for further analysis, in a format
 
 ## :point_up: Improvement Points
 - Consider using PySpark to process data, I decided to go with pandas because dataset is small, making Pandas and beter solution than Pyspark, also PySpark environments are more complex to set up, but pyspark is optimized for large-scale data processing and can reduce the time cost compared to traditional Python data processing methods.
-- ~~Check if the file exists and its modification date. If the file already exists and it was downloaded less than one month ago, skip downloading a new file. This can reduce unnecessary file downloads and improve performance.~~ :heavy_check_mark: Completed
 -   Instead of just printing a message using `printf`, send an email with the status of the pipeline to the pipeline owner for the reporting task. This will improve communication and keep the pipeline owner informed about the pipeline's progress.
 -   Explore with the stakeholdes the option to replace null values with the mean of the corresponding month/year/uf. This approach will help fill in missing data and make the data analysis more accurate.
-- ~~Since I choose to insert both dataframes on 1 table, I needed t use the if_exists='append' attribute when inserting on the database. Now, if I don't want to change my database, I should look for an option to check for duplicate rows based on year-month and remove it.~~ :heavy_check_mark:Completed
-## :hammer_and_wrench: Setup
 
 ### Clone project
 
