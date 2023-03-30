@@ -22,7 +22,7 @@ In order to develop an MVP for the ANP fuel sales ETL process, I initially used 
 
 Then I start implementing the **Airflow**, in order to orchestrate the ETL process. This involved downloading sales data for oil derivative fuels and diesel from the government website, extracting the pivot cache, unpivoting the table, validating totals, and inserting all the data into a **PostgreSQL** table in the requested format.
 
-I have observed that when manually converting pivot cache data on **Google Colab**, the data can be inconsistent, resulting in mismatched volume values for each month. In such cases, it is necessary to rotate the date to ensure that the volumes values from each month match accurately. However, by using the **openpyxl** library, the data is correctly processed without requiring any additional steps, and the column unit is already created, thereby saving time and effort.
+I have observed that when manually converting pivot cache data to upload to **Google Colab**, the data can be inconsistent, resulting in mismatched volume values for each month. In such cases, it is necessary to rotate the date to ensure that the volumes values from each month match accurately. However, by using the **openpyxl** library to extract the pivot cache on Airflow, the data is correctly processed without requiring any additional steps, and the column unit is already created, thereby saving time and effort.
 
 To ensure consistency across environments, I used **Docker** to create an extended image that allowed me to run the same version of **Python** and **Pandas** that I used in Google Colab. This ensured that the solution was reliable and reproducible across different systems.
 ### Folder Structure
@@ -49,10 +49,13 @@ airflow
 ![N|Solid](https://github.com/matosmatheus7/DataEngineering-Challenge/blob/main/assets/dag_snapshot.PNG?raw=true)
 
 ### Extraction
-This DAG will run every month on the first day of the month. The extraction process involves downloading the latest file from the **official ANP website** and saving it to the staging folder. Using the **openpyxl** library, we load the pivot cache from the requested tables and store the data in two separate .xlsx tables in the staging folder.
+    
+The DAG (Directed Acyclic Graph) is designed to run once a month. The extraction process involves **downloading** the latest file from the official ANP website, which we then save to the staging folder. We use the **openpyxl** library to extract the pivot cache from the download .xlsx file, storing the results in two separate .xlsx tables also located in the staging folder.
 
+It's worth noting that the download process will only occur if the file doesn't already exist in the staging folder or if the existing file is older than 30 days (1 month). This ensures that we're always working with the most up-to-date data. In the event that an old .xlsx file exists, it will be replaced with the new file.
 
 ### Transformation 
+   
 My primary task in the ETL process is to perform a series of transformations on the data to meet the specific requirements of the challenge. The first step is to **unpivot the months columns**, which involves converting the data from a wide format to a long format. This makes it easier to analyze and manipulate the data.
 In addition to the unpivot operation, there may be other minor operations required to adapt the data to meet the challenge requirements. For example, I may need to perform data type conversions, remove or rename columns, or handle missing or null values.
 
@@ -61,6 +64,9 @@ By performing these transformations and validations, we can ensure that the data
 
 ### Load
 The final step in the ETL process is to load the transformed data into a Postgres table. This involves inserting both .xlsx files that were generated during the transformation process into the **anp_sales** table in **Postgres**.
+
+The **report task**, has the objective to inform that the pipeline has been complete. It will improve communication and keep the pipeline owner informed about the pipeline's progress.
+
 By completing this step, the data is available for further analysis, in a format that is easy to work with and meets the specific requirements of the challenge.
 
 ![N|Solid](https://github.com/matosmatheus7/DataEngineering-Challenge/blob/main/assets/postgree_snapshot.PNG?raw=true)
@@ -87,17 +93,14 @@ By completing this step, the data is available for further analysis, in a format
 ## :notebook:Useful links
 - https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html
 
-- https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html
-
 - https://pandas.pydata.org/docs/reference/api/pandas.melt.html
 
 - https://stackoverflow.com/questions/37354105/find-the-end-of-the-month-of-a-pandas-dataframe-series
 
-- https://www.geeksforgeeks.org/how-to-insert-a-pandas-dataframe-to-an-existing-postgresql-table/
+- https://www.statology.org/pandas-unpivot/#:~:text=In%20pandas%2C%20you%20can%20use,col3'%2C%20...%5D
+
+- https://ask.libreoffice.org/t/convert-to-command-line-parameter/840
 
 - https://www.w3schools.com/python/ref_keyword_assert.asp
 
-- https://www.w3schools.com/python/python_try_except.asp
 # :crossed_swords: Thanks for the Opportunity !
-
-
