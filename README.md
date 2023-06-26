@@ -1,6 +1,6 @@
 # :fuelpump: DataEngineering-Challenge
 #### ANP Fuel Sales Data Challenge
-This test consists in developing an ETL pipeline to extract internal pivot caches from consolidated reports made available by Brazilian government's regulatory agency for oil/fuels, ANP (National Agency for Petroleum, Natural Gas and Biofuels).
+This project consists in developing an ETL pipeline to extract internal pivot caches from consolidated reports made available by Brazilian government's regulatory agency for oil/fuels, ANP (National Agency for Petroleum, Natural Gas and Biofuels).
 
 ### Requirements
 - Airflow
@@ -100,4 +100,3 @@ By completing this step, the data is available for further analysis, in a format
 
 - https://www.w3schools.com/python/ref_keyword_assert.asp
 
-# :crossed_swords: Thanks for the Opportunity !
